@@ -80,10 +80,28 @@ class LinkedList {
                 curr = next
          }
   }
+
+  // Delete a node from a linked list
+       
+deleteNode(val) {
+       let prev = null;
+       let curr = this.head
+       while(curr !== null){
+              if(curr.val === val){
+                     prev.next = curr.next
+              }
+              prev = curr
+              curr = curr.next
+       }
+
+       }
+  
 }
 
 let list = new LinkedList();
-// list.append(2);
-// list.append(8);
-// list.append(3);
-// list.append(7);
+list.append('a');
+list.append('b');
+list.append('c');
+list.append('d');
+list.deleteNode('d');
+console.log(list.print());
