@@ -84,8 +84,13 @@ class LinkedList {
   // Delete a node from a linked list
        
 deleteNode(val) {
+       
+       if(this.head.val === val){
+              console.log(this.head.next);
+              return this.head.next     
+       } 
        let prev = null;
-       let curr = this.head
+       let curr = this.head;
        while(curr !== null){
               if(curr.val === val){
                      prev.next = curr.next
@@ -93,7 +98,7 @@ deleteNode(val) {
               prev = curr
               curr = curr.next
        }
-
+       // return this.head;
        }
   
 }
@@ -103,5 +108,6 @@ list.append('a');
 list.append('b');
 list.append('c');
 list.append('d');
-list.deleteNode('d');
+console.log(list.head);
+list.deleteNode('a');
 console.log(list.print());
