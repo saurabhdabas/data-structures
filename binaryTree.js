@@ -70,3 +70,9 @@ const transpose = () => {
   return transposedArray;
 }
 // console.log(transpose(arr));
+const multiply = (num1) => {
+  return (num2) => {
+    return num1*num2;
+  }
+}
+console.log(multiply(5)(2));
