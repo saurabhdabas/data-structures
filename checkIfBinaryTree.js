@@ -7,7 +7,7 @@ class Node {
   }
 }
 const a = new Node(8); // instance of Node class
-const b = new Node(2);
+const b = new Node(22);
 const c = new Node(10);
 const d = new Node(1);
 const e = new Node(6);
@@ -22,30 +22,19 @@ c.right = f;
 
 
 // // IN-ORDER TRAVERSAL OF BST     ---->Left--->Root---->Right
-const inOrder = function(root) {
-  const resultsArray = [];
-  const stack = [];   
-  let prev = null;
-  while(stack.length > 0 || root !== null) {
-    if(root){
-      stack.push(root);
-      root = root.left;
-    } else {
-      root = stack.pop();
-
-      if(prev === null){  // This checks if binary tree is BST
-        prev = root;
-      } 
-      if(prev !== null && root.val < prev.val){
-        return false;
-      } else {
-        prev = root;
-      }
-
-      resultsArray.push(root.val);
-      root = root.right;
+const isBST = function(root) {
+  function helper(root, min, max){
+    if (!root){
+        return true
     }
-  }
-  return resultsArray;
+   
+   if ((min !== null && root.val <= min) || (max !== null && root.val >= max)){
+       return false
+   }
+   
+   return helper(root.left, min, root.val) && helper(root.right, root.val, max)
 }
-console.log(inOrder(a));
+
+return helper(root, null, null)
+}
+console.log(isBST(a));
