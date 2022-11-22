@@ -7,7 +7,7 @@ class Node {
   }
 }
 const a = new Node(8); // instance of Node class
-const b = new Node(22);
+const b = new Node(2);
 const c = new Node(10);
 const d = new Node(1);
 const e = new Node(6);
@@ -22,19 +22,29 @@ c.right = f;
 
 
 // // IN-ORDER TRAVERSAL OF BST     ---->Left--->Root---->Right
-const isBST = function(root) {
-  function helper(root, min, max){
-    if (!root){
-        return true
-    }
-   
-   if ((min !== null && root.val <= min) || (max !== null && root.val >= max)){
-       return false
-   }
-   
-   return helper(root.left, min, root.val) && helper(root.right, root.val, max)
-}
 
-return helper(root, null, null)
+const checkIfBST = function(root) {
+  const stack = []; 
+  let prev = null;  
+  while(stack.length > 0 || root !== null) {
+    if(root){
+      stack.push(root);
+      root = root.left;
+    } else {
+      root = stack.pop();
+      if(prev === null){
+        prev = root;
+      }
+      else if(prev !== null && root.val <= prev.val){
+        console.log("ROOT.VALUE:",root.val);
+        console.log("PREV.VALUE:",prev.val);
+        return false
+      } else {
+        prev = root;
+      }
+      root = root.right;
+    }
+  }
+  return true;
 }
-console.log(isBST(a));
+console.log(checkIfBST(a));
